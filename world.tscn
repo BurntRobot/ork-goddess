@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1osktdk2ny3u"]
+[gd_scene load_steps=9 format=3 uid="uid://d1osktdk2ny3u"]
 
 [ext_resource type="Texture2D" uid="uid://c7ubokevmnf4w" path="res://Overworld.png" id="1_5dlyj"]
 [ext_resource type="PackedScene" uid="uid://5kfayolc3hji" path="res://ork.tscn" id="2_afitm"]
 [ext_resource type="Script" path="res://Camera.gd" id="2_gvfr1"]
+[ext_resource type="Script" path="res://SelectionArea.gd" id="4_ifqme"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og6es"]
 texture = ExtResource("1_5dlyj")
@@ -1083,6 +1084,12 @@ texture = ExtResource("1_5dlyj")
 [sub_resource type="TileSet" id="TileSet_odanv"]
 sources/0 = SubResource("TileSetAtlasSource_og6es")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw53i"]
+size = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhfkk"]
+size = Vector3(0, 0, 0)
+
 [node name="World" type="Node"]
 
 [node name="Level" type="Node2D" parent="."]
@@ -1112,3 +1119,13 @@ position = Vector2(358, 469)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("2_gvfr1")
+
+[node name="SelectionArea" type="Area2D" parent="."]
+script = ExtResource("4_ifqme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionArea"]
+shape = SubResource("RectangleShape2D_uw53i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SelectionArea"]
+self_modulate = Color(0.447059, 0.447059, 0.447059, 0.270588)
+mesh = SubResource("BoxMesh_uhfkk")

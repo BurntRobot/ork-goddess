@@ -5,14 +5,22 @@ extends CharacterBody2D
 @onready var health_timer = $HealthTimer
 @onready var health_bar = $HealthBar
 @onready var death_timer = $DeathTimer
+@onready var chosen_mark = $Chosen
 var health = 100
 var attention = 100
 var goddess_is_watching = false
 var final_countdown = 10
+var chosen = false
 
 func _ready():
 	attention_bar.value = attention
 	health_bar.value = health
+
+func _process(delta):
+	if chosen and not chosen_mark.visible:
+		chosen_mark.visible = true
+	elif not chosen and chosen_mark.visible:
+		chosen_mark.visible = false
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	on_screen_label.text = "OnScreen"
