@@ -45,7 +45,7 @@ script = ExtResource("1_6ifs0")
 
 [node name="Chosen" type="MeshInstance2D" parent="."]
 visible = false
-self_modulate = Color(0.54902, 0.54902, 0.54902, 0.513726)
+self_modulate = Color(0.811765, 0.811765, 0.811765, 0.513726)
 position = Vector2(0, 8)
 mesh = SubResource("SphereMesh_owpl3")
 
