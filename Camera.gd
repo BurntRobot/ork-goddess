@@ -8,7 +8,7 @@ var zoom_acceleration = 0.005
 var zoom_speed = 0.0
 var zoom_threshold = 0.05
 var zoom_sliding = 0.005 / 50
-var camera_speed = 7
+var camera_speed = 5
 
 var input_direction = Vector2.ZERO
 
