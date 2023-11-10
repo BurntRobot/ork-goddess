@@ -12,3 +12,7 @@ func _process(delta):
 func _on_selection_area_selection_cleared():
 	for unit in get_children():
 		unit.chosen = false
+
+func set_multiplier(zoom_multiplier):
+	for unit in get_children():
+		unit.zoom_multiplier = zoom_multiplier

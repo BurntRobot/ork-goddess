@@ -1125,7 +1125,7 @@ position = Vector2(618, 284)
 [node name="Ork3" parent="MainGame/Units" instance=ExtResource("2_afitm")]
 position = Vector2(358, 469)
 
-[node name="Camera" type="Camera2D" parent="MainGame"]
+[node name="Goddess" type="Camera2D" parent="MainGame"]
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("2_gvfr1")
