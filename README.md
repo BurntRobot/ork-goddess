@@ -1,2 +1,2 @@
 # Ork Goddess
-A game for Game Off 2023. Strategy game about a ork goddess that can power up her ork with sight.
+A game for Game Off 2023. Strategy game about an ork goddess that can power up her orks with sight.

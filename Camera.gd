@@ -8,7 +8,7 @@ var zoom_acceleration = 0.005
 var zoom_speed = 0.0
 var zoom_threshold = 0.05
 var zoom_sliding = 0.005 / 50
-var camera_speed = 10
+var camera_speed = 7
 
 var input_direction = Vector2.ZERO
 
@@ -19,7 +19,7 @@ func _process(delta):
 
 func _move_camera():
 	_get_input_direction()
-	position += input_direction * camera_speed
+	position += input_direction * (camera_speed / zoom.x)
 
 func _zoom_camera():
 	if zoom.x < (max_zoom - zoom_threshold) and zoom.x > (min_zoom + zoom_threshold):
@@ -28,7 +28,6 @@ func _zoom_camera():
 	elif zoom.x >= (max_zoom - zoom_threshold):
 		if zoom_speed > 0 and zoom.x < max_zoom:
 			zoom_speed = 0
-			print("here 2")
 			zoom.move_toward(Vector2(max_zoom, max_zoom), zoom_step)
 		elif zoom_speed < 0:
 			zoom.x += zoom_speed
@@ -36,7 +35,6 @@ func _zoom_camera():
 	elif zoom.x <= (min_zoom + zoom_threshold):
 		if zoom_speed < 0 and zoom.x > min_zoom:
 			zoom_speed = 0
-			print("here 3")
 			zoom.move_toward(Vector2(min_zoom, min_zoom), zoom_step)
 		elif zoom_speed > 0:
 			zoom.x += zoom_speed
