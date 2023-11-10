@@ -28,14 +28,14 @@ func _zoom_camera():
 	elif zoom.x >= (max_zoom - zoom_threshold):
 		if zoom_speed > 0 and zoom.x < max_zoom:
 			zoom_speed = 0
-			zoom.move_toward(Vector2(max_zoom, max_zoom), zoom_step)
+			zoom = zoom.move_toward(Vector2(max_zoom, max_zoom), zoom_step)
 		elif zoom_speed < 0:
 			zoom.x += zoom_speed
 			zoom.y += zoom_speed
 	elif zoom.x <= (min_zoom + zoom_threshold):
 		if zoom_speed < 0 and zoom.x > min_zoom:
 			zoom_speed = 0
-			zoom.move_toward(Vector2(min_zoom, min_zoom), zoom_step)
+			zoom = zoom.move_toward(Vector2(min_zoom, min_zoom), zoom_step)
 		elif zoom_speed > 0:
 			zoom.x += zoom_speed
 			zoom.y += zoom_speed

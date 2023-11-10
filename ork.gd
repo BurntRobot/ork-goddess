@@ -11,9 +11,10 @@ var attention = 100
 var goddess_is_watching = false
 var final_countdown = 10
 var chosen = false
-var attention_multiplier = 10
+var attention_multiplier = 20
 var zoom_multiplier = 1
 var max_zoom_multiplier = 2.0 # брать из скрипта камеры
+var health_boost = 30
 
 func _ready():
 	attention_bar.value = attention
@@ -28,11 +29,8 @@ func _process(delta):
 		on_screen_label.text = str(roundf(death_timer.time_left))
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	#on_screen_label.text = "OnScreen"
 	goddess_is_watching = true
-
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	#on_screen_label.text = "NotOnScreen"
 	goddess_is_watching = false
 
 func _on_attention_timer_timeout():
@@ -44,9 +42,15 @@ func _on_attention_timer_timeout():
 		attention = 0
 		health_timer.paused = false
 		health_timer.start()
-	elif goddess_is_watching and attention == 100 and zoom_multiplier == max_zoom_multiplier:
-		health_timer.stop()
-		death_timer.stop()
+	if goddess_is_watching and attention >= 100 and zoom_multiplier >= max_zoom_multiplier:
+		attention = 100
+		if not health_timer.is_stopped():
+			health_timer.stop()
+		if not death_timer.is_stopped():
+			death_timer.stop()
+			on_screen_label.text = ""
+			health += health_boost
+			health_bar.value = health
 	attention_bar.value = attention
 
 func _on_health_timer_timeout():
@@ -55,7 +59,6 @@ func _on_health_timer_timeout():
 	elif health == 0 and death_timer.is_stopped():
 		death_timer.paused = false
 		death_timer.start()
-		print("aaaa")
 	health_bar.value = health
 
 func _on_death_timer_timeout():
