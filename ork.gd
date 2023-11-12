@@ -20,7 +20,7 @@ func _ready():
 	attention_bar.value = attention
 	health_bar.value = health
 
-func _process(delta):
+func _process(_delta):
 	if chosen and not chosen_mark.visible:
 		chosen_mark.visible = true
 	elif not chosen and chosen_mark.visible:

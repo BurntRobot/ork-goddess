@@ -2,8 +2,9 @@ extends TextureRect
 
 var in_building = false
 var zoom_multiplier = 0
+signal build(texture)
 
-func _process(delta):
+func _process(_delta):
 	scale = Vector2(zoom_multiplier, zoom_multiplier)
 	position = get_global_mouse_position() - (texture.get_size() * scale / 2)
 

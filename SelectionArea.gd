@@ -15,7 +15,7 @@ func _ready():
 	starting_point = position
 	ending_point = position
 
-func _process(delta):
+func _process(_delta):
 	if in_action:
 		if position != starting_point:
 			_reset_rect()

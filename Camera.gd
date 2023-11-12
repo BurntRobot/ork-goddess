@@ -13,7 +13,7 @@ var camera_speed = 5
 var input_direction = Vector2.ZERO
 
 
-func _process(delta):
+func _process(_delta):
 	_move_camera()
 	_zoom_camera()
 
