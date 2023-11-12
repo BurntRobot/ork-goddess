@@ -23,7 +23,7 @@ func _process(delta):
 		ending_point = get_global_mouse_position()
 		_set_rectagular()
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("mouse_select"):
 			in_action = true

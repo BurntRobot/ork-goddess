@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1osktdk2ny3u"]
+[gd_scene load_steps=17 format=3 uid="uid://d1osktdk2ny3u"]
 
 [ext_resource type="Texture2D" uid="uid://c7ubokevmnf4w" path="res://Overworld.png" id="1_5dlyj"]
 [ext_resource type="Script" path="res://world.gd" id="1_c2huc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Camera.gd" id="2_gvfr1"]
 [ext_resource type="Script" path="res://Units.gd" id="2_j8602"]
 [ext_resource type="Script" path="res://SelectionArea.gd" id="4_ifqme"]
+[ext_resource type="Script" path="res://BuildingPlaceholder.gd" id="7_mts08"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og6es"]
 texture = ExtResource("1_5dlyj")
@@ -1096,6 +1097,17 @@ size = Vector3(0, 0, 0)
 content_margin_left = 12.0
 content_margin_top = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hyt2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq6fn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn4yp"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhjpc"]
+atlas = ExtResource("1_5dlyj")
+region = Rect2(96, 0, 80, 80)
+
 [node name="World" type="Node"]
 script = ExtResource("1_c2huc")
 
@@ -1157,6 +1169,29 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upbvk")
 text = "Orks: 3"
 
+[node name="Button" type="Button" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+offset_right = 62.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hyt2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vq6fn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dn4yp")
+action_mode = 0
+text = "Построить"
+
+[node name="BuildingPlaceholder" type="TextureRect" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_fhjpc")
+script = ExtResource("7_mts08")
+
 [connection signal="orks_counted" from="MainGame/Units" to="." method="_on_units_orks_counted"]
 [connection signal="body_entered" from="MainGame/SelectionArea" to="MainGame/SelectionArea" method="_on_body_entered"]
 [connection signal="selection_cleared" from="MainGame/SelectionArea" to="MainGame/Units" method="_on_selection_area_selection_cleared"]
+[connection signal="pressed" from="UI/Button" to="UI/BuildingPlaceholder" method="_on_button_pressed"]
