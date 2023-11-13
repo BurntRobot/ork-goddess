@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://daa8iex5hpk5d"]
+
+[ext_resource type="Script" path="res://UI/SelectionArea.gd" id="1_s6fd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw53i"]
+size = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhfkk"]
+size = Vector3(0, 0, 0)
+
+[node name="SelectionArea" type="Area2D"]
+script = ExtResource("1_s6fd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uw53i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.447059, 0.447059, 0.447059, 0.270588)
+mesh = SubResource("BoxMesh_uhfkk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

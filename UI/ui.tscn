@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dolma6ynvlpqn"]
+
+[ext_resource type="Script" path="res://UI/UI.gd" id="1_pir4m"]
+[ext_resource type="AudioStream" uid="uid://bnntwh2x17euj" path="res://UI/switch3.wav" id="2_3la0d"]
+[ext_resource type="Texture2D" uid="uid://c7ubokevmnf4w" path="res://Overworld.png" id="3_scphx"]
+[ext_resource type="Script" path="res://UI/BuildingPlaceholder.gd" id="4_xi3yx"]
+[ext_resource type="Script" path="res://Buildings/Buildings.gd" id="5_6csg0"]
+[ext_resource type="PackedScene" uid="uid://dlu44i3rueyu7" path="res://UI/building_button.tscn" id="6_qfp06"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upbvk"]
+content_margin_left = 12.0
+content_margin_top = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hyt2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq6fn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn4yp"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhjpc"]
+atlas = ExtResource("3_scphx")
+region = Rect2(96, 0, 80, 80)
+
+[node name="UI" type="CanvasLayer"]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("1_pir4m")
+
+[node name="OrksCounter" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0941176, 0.25098, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upbvk")
+text = "Orks: 3"
+
+[node name="BuildButton" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -14.0
+offset_right = 42.0
+offset_bottom = -3.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hyt2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vq6fn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dn4yp")
+action_mode = 0
+text = "Построить"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BuildButton"]
+stream = ExtResource("2_3la0d")
+
+[node name="BuildingPlaceholder" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_fhjpc")
+script = ExtResource("4_xi3yx")
+
+[node name="Buildings" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -14.0
+offset_right = 315.0
+offset_bottom = -2.0
+grow_vertical = 0
+script = ExtResource("5_6csg0")
+
+[node name="Hive" parent="Buildings" instance=ExtResource("6_qfp06")]
+layout_mode = 2
+
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="BuildButton" to="BuildButton/AudioStreamPlayer" method="_set_playing"]

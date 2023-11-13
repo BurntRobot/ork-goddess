@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlu44i3rueyu7"]
+
+[ext_resource type="AudioStream" uid="uid://dqprk53gtmu05" path="res://UI/switch7.wav" id="1_q1b0s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hyt2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq6fn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn4yp"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[node name="Hive" type="Button"]
+theme_override_colors/font_color = Color(0.254902, 0.254902, 0.254902, 1)
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hyt2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vq6fn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dn4yp")
+text = "Улей"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_q1b0s")
+
+[connection signal="pressed" from="." to="AudioStreamPlayer" method="_set_playing" binds= [true]]

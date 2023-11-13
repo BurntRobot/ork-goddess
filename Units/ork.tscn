@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://5kfayolc3hji"]
 
-[ext_resource type="Script" path="res://ork.gd" id="1_6ifs0"]
+[ext_resource type="Script" path="res://Units/ork.gd" id="1_6ifs0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_owpl3"]
 radius = 10.0

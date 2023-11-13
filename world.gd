@@ -4,6 +4,7 @@ extends Node
 @onready var goddess = $MainGame/Goddess
 @onready var units = $MainGame/Units
 @onready var building_placeholder = $UI/BuildingPlaceholder
+@onready var buildings = $MainGame/Buildings
 var zoom = 0
 
 func _process(_delta):
@@ -17,5 +18,9 @@ func _on_units_orks_counted(orks_number):
 	if orks_counter:
 		orks_counter.text = "Orks: " + str(orks_number)
 
-func _on_building_placeholder_build(texture):
-	pass # Replace with function body.
+func _on_building_placeholder_build(_texture):
+	#buildings.
+	#var node = ClassType.new()
+	#node.set_name("node")
+	#add_child(node)
+	pass

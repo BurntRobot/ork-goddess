@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1osktdk2ny3u"]
+[gd_scene load_steps=13 format=3 uid="uid://d1osktdk2ny3u"]
 
 [ext_resource type="Texture2D" uid="uid://c7ubokevmnf4w" path="res://Overworld.png" id="1_5dlyj"]
 [ext_resource type="Script" path="res://world.gd" id="1_c2huc"]
-[ext_resource type="PackedScene" uid="uid://5kfayolc3hji" path="res://ork.tscn" id="2_afitm"]
-[ext_resource type="Script" path="res://Camera.gd" id="2_gvfr1"]
-[ext_resource type="Script" path="res://Units.gd" id="2_j8602"]
-[ext_resource type="Script" path="res://Buildings.gd" id="3_8va7x"]
-[ext_resource type="Script" path="res://SelectionArea.gd" id="4_ifqme"]
-[ext_resource type="Script" path="res://BuildingPlaceholder.gd" id="7_mts08"]
+[ext_resource type="PackedScene" uid="uid://5kfayolc3hji" path="res://Units/ork.tscn" id="2_afitm"]
+[ext_resource type="Script" path="res://Units/Units.gd" id="2_j8602"]
+[ext_resource type="Script" path="res://Buildings/Buildings.gd" id="3_umbc1"]
+[ext_resource type="Script" path="res://UI/SelectionArea.gd" id="4_ifqme"]
+[ext_resource type="Script" path="res://Goddess/Goddess.gd" id="6_qku0v"]
+[ext_resource type="PackedScene" uid="uid://dolma6ynvlpqn" path="res://UI/ui.tscn" id="8_3cmtl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og6es"]
 texture = ExtResource("1_5dlyj")
@@ -1094,21 +1094,6 @@ size = Vector2(0, 0)
 [sub_resource type="BoxMesh" id="BoxMesh_uhfkk"]
 size = Vector3(0, 0, 0)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upbvk"]
-content_margin_left = 12.0
-content_margin_top = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hyt2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq6fn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn4yp"]
-bg_color = Color(0.294118, 0.294118, 0.294118, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fhjpc"]
-atlas = ExtResource("1_5dlyj")
-region = Rect2(96, 0, 80, 80)
-
 [node name="World" type="Node"]
 script = ExtResource("1_c2huc")
 
@@ -1127,7 +1112,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(655383, 1835008, 2, 327729, 1835008, 2, 1114142, 1835008, 2, 524322, 2031616, 3, 589858, 2031616, 4, 524323, 2097152, 3, 589859, 2097152, 4, 1507342, 2031616, 3, 1572878, 2031616, 4, 1507343, 2097152, 3, 1572879, 2097152, 4, 1638447, 1441792, 9, 1703983, 1441792, 10, 1769519, 1441792, 11, 1638448, 1507328, 9, 1703984, 1507328, 10, 1769520, 1507328, 11, 1638449, 1572864, 9, 1703985, 1572864, 10, 1769521, 1572864, 11, 2228248, 1441792, 9, 2293784, 1441792, 10, 2359320, 1441792, 11, 2228249, 1507328, 9, 2293785, 1507328, 10, 2359321, 1507328, 11, 2228250, 1572864, 9, 2293786, 1572864, 10, 2359322, 1572864, 11, 327734, 1441792, 9, 393270, 1441792, 10, 458806, 1441792, 11, 327735, 1507328, 9, 393271, 1507328, 10, 458807, 1507328, 11, 327736, 1572864, 9, 393272, 1572864, 10, 458808, 1572864, 11)
 
 [node name="Buildings" type="Node2D" parent="MainGame"]
-script = ExtResource("3_8va7x")
+script = ExtResource("3_umbc1")
 
 [node name="Units" type="Node2D" parent="MainGame"]
 script = ExtResource("2_j8602")
@@ -1144,7 +1129,7 @@ position = Vector2(358, 469)
 [node name="Goddess" type="Camera2D" parent="MainGame"]
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
-script = ExtResource("2_gvfr1")
+script = ExtResource("6_qku0v")
 
 [node name="SelectionArea" type="Area2D" parent="MainGame"]
 script = ExtResource("4_ifqme")
@@ -1156,47 +1141,8 @@ shape = SubResource("RectangleShape2D_uw53i")
 self_modulate = Color(0.447059, 0.447059, 0.447059, 0.270588)
 mesh = SubResource("BoxMesh_uhfkk")
 
-[node name="UI" type="CanvasLayer" parent="."]
-process_priority = 1
-process_physics_priority = 1
-
-[node name="OrksCounter" type="Label" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.0941176, 0.25098, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upbvk")
-text = "Orks: 3"
-
-[node name="Button" type="Button" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -22.0
-offset_right = 62.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_4hyt2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vq6fn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dn4yp")
-action_mode = 0
-text = "Построить"
-
-[node name="BuildingPlaceholder" type="TextureRect" parent="UI"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_fhjpc")
-script = ExtResource("7_mts08")
+[node name="UI" parent="." instance=ExtResource("8_3cmtl")]
 
 [connection signal="orks_counted" from="MainGame/Units" to="." method="_on_units_orks_counted"]
 [connection signal="body_entered" from="MainGame/SelectionArea" to="MainGame/SelectionArea" method="_on_body_entered"]
 [connection signal="selection_cleared" from="MainGame/SelectionArea" to="MainGame/Units" method="_on_selection_area_selection_cleared"]
-[connection signal="pressed" from="UI/Button" to="UI/BuildingPlaceholder" method="_on_button_pressed"]
-[connection signal="build" from="UI/BuildingPlaceholder" to="." method="_on_building_placeholder_build"]
