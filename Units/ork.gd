@@ -42,15 +42,16 @@ func _on_attention_timer_timeout():
 		attention = 0
 		health_timer.paused = false
 		health_timer.start()
-	if goddess_is_watching and attention >= 100 and zoom_multiplier >= max_zoom_multiplier:
+	if goddess_is_watching and attention >= 100:
 		attention = 100
 		if not health_timer.is_stopped():
 			health_timer.stop()
-		if not death_timer.is_stopped():
-			death_timer.stop()
-			on_screen_label.text = ""
-			health += health_boost
-			health_bar.value = health
+		if zoom_multiplier >= max_zoom_multiplier:
+			if not death_timer.is_stopped():
+				death_timer.stop()
+				on_screen_label.text = ""
+				health += health_boost
+				health_bar.value = health
 	attention_bar.value = attention
 
 func _on_health_timer_timeout():
