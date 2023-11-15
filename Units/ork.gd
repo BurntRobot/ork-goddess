@@ -16,7 +16,21 @@ var zoom_multiplier = 1
 var max_zoom_multiplier = 2.0 # брать из скрипта камеры
 var health_boost = 30
 
+@export var speed = 50
+@onready var target = position
+
+func _physics_process(delta):
+	velocity = position.direction_to(target) * speed
+	if position.distance_to(target) > 10:
+		move_and_slide()
+	else:
+		target = new_target()
+
+func new_target():
+	return position + Vector2(randi_range(-100, 100), randi_range(-100, 100))
+
 func _ready():
+	randomize()
 	attention_bar.value = attention
 	health_bar.value = health
 
