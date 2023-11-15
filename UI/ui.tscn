@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://bnntwh2x17euj" path="res://UI/switch3.wav" id="2_3la0d"]
 [ext_resource type="Texture2D" uid="uid://c7ubokevmnf4w" path="res://Overworld.png" id="3_scphx"]
 [ext_resource type="Script" path="res://UI/BuildingPlaceholder.gd" id="4_xi3yx"]
-[ext_resource type="Script" path="res://Buildings/Buildings.gd" id="5_6csg0"]
+[ext_resource type="Script" path="res://UI/Buildings.gd" id="5_cdtpu"]
 [ext_resource type="PackedScene" uid="uid://dlu44i3rueyu7" path="res://UI/building_button.tscn" id="6_qfp06"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upbvk"]
@@ -77,10 +77,12 @@ offset_top = -14.0
 offset_right = 315.0
 offset_bottom = -2.0
 grow_vertical = 0
-script = ExtResource("5_6csg0")
+script = ExtResource("5_cdtpu")
 
 [node name="Hive" parent="Buildings" instance=ExtResource("6_qfp06")]
 layout_mode = 2
 
 [connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="BuildButton" to="BuildButton/AudioStreamPlayer" method="_set_playing" binds= [true]]
+[connection signal="building_ploted" from="Buildings" to="." method="_on_buildings_building_ploted"]
+[connection signal="pressed" from="Buildings/Hive" to="Buildings" method="_on_hive_pressed"]

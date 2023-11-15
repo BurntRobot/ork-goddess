@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7akaxbwhx31i"]
-
-[ext_resource type="Script" path="res://Buildings/building.gd" id="1_brf44"]
+[gd_scene load_steps=2 format=3 uid="uid://c7akaxbwhx31i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2pcy"]
 size = Vector2(0, 0)
 
 [node name="Building" type="StaticBody2D"]
-script = ExtResource("1_brf44")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

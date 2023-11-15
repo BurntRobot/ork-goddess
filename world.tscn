@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://world.gd" id="1_c2huc"]
 [ext_resource type="PackedScene" uid="uid://5kfayolc3hji" path="res://Units/ork.tscn" id="2_afitm"]
 [ext_resource type="Script" path="res://Units/Units.gd" id="2_j8602"]
-[ext_resource type="Script" path="res://Buildings/Buildings.gd" id="3_umbc1"]
+[ext_resource type="Script" path="res://Buildings/Buildings_array.gd" id="3_y8nye"]
 [ext_resource type="Script" path="res://UI/SelectionArea.gd" id="4_ifqme"]
 [ext_resource type="Script" path="res://Goddess/Goddess.gd" id="6_qku0v"]
 [ext_resource type="PackedScene" uid="uid://dolma6ynvlpqn" path="res://UI/ui.tscn" id="8_3cmtl"]
@@ -1112,7 +1112,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(655383, 1835008, 2, 327729, 1835008, 2, 1114142, 1835008, 2, 524322, 2031616, 3, 589858, 2031616, 4, 524323, 2097152, 3, 589859, 2097152, 4, 1507342, 2031616, 3, 1572878, 2031616, 4, 1507343, 2097152, 3, 1572879, 2097152, 4, 1638447, 1441792, 9, 1703983, 1441792, 10, 1769519, 1441792, 11, 1638448, 1507328, 9, 1703984, 1507328, 10, 1769520, 1507328, 11, 1638449, 1572864, 9, 1703985, 1572864, 10, 1769521, 1572864, 11, 2228248, 1441792, 9, 2293784, 1441792, 10, 2359320, 1441792, 11, 2228249, 1507328, 9, 2293785, 1507328, 10, 2359321, 1507328, 11, 2228250, 1572864, 9, 2293786, 1572864, 10, 2359322, 1572864, 11, 327734, 1441792, 9, 393270, 1441792, 10, 458806, 1441792, 11, 327735, 1507328, 9, 393271, 1507328, 10, 458807, 1507328, 11, 327736, 1572864, 9, 393272, 1572864, 10, 458808, 1572864, 11)
 
 [node name="Buildings" type="Node2D" parent="MainGame"]
-script = ExtResource("3_umbc1")
+script = ExtResource("3_y8nye")
 
 [node name="Units" type="Node2D" parent="MainGame"]
 script = ExtResource("2_j8602")
@@ -1146,3 +1146,4 @@ mesh = SubResource("BoxMesh_uhfkk")
 [connection signal="orks_counted" from="MainGame/Units" to="." method="_on_units_orks_counted"]
 [connection signal="body_entered" from="MainGame/SelectionArea" to="MainGame/SelectionArea" method="_on_body_entered"]
 [connection signal="selection_cleared" from="MainGame/SelectionArea" to="MainGame/Units" method="_on_selection_area_selection_cleared"]
+[connection signal="building_ploted" from="UI" to="." method="_on_ui_building_ploted"]

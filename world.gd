@@ -21,3 +21,6 @@ func _on_building_placeholder_build(_texture):
 	#node.set_name("node")
 	#add_child(node)
 	pass
+
+func _on_ui_building_ploted(name):
+	buildings.build_a(name)
