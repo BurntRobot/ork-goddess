@@ -6,6 +6,7 @@ size = Vector2(0, 0)
 [node name="Building" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c2pcy")
